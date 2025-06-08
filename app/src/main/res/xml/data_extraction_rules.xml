@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data-extraction-rules>
     <cloud-backup>
-        <!-- Include the shared preferences -->
+        <!-- Include shared preferences -->
         <include domain="sharedpref" path="my_preferences.xml" />
 
-        <!-- Include a database file -->
+        <!-- Include the database file -->
         <include domain="database" path="my_app.db" />
 
-        <!-- Exclude the cache directory -->
-        <exclude domain="file" path="cache/" />
+        <!-- Include the file directory to enable exclusions -->
+        <include domain="file" path="." />
+        <include domain="file" path="cache/" />
+        <include domain="file" path="temp/" />
 
-        <!-- Exclude temporary files -->
+        <!-- Exclude unwanted subdirectories -->
+        <exclude domain="file" path="cache/" />
         <exclude domain="file" path="temp/" />
     </cloud-backup>
 
-    <!-- Optional: you can define rules for device-to-device transfer similarly -->
+    <!-- Optional: Uncomment to add rules for device-to-device transfer -->
     <!--
     <device-transfer>
         <include domain="sharedpref" path="my_preferences.xml" />
+        <include domain="file" path="." />
+        <include domain="file" path="cache/" />
+        <include domain="file" path="temp/" />
         <exclude domain="file" path="cache/" />
+        <exclude domain="file" path="temp/" />
     </device-transfer>
     -->
 </data-extraction-rules>
